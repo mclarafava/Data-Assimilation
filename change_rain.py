@@ -106,7 +106,7 @@ def changeRainfall(k_array):
                 factory = ((-k + 1)/ndata) * n + k
                 factor_array = np.append(factor_array, factory)
                 n = n - 1
-                data[i][rainc] =  float(r[rainc]) * factory 
+                data[i][rainc] =  float(r[rainc]) * factory
         debuglog('Saving rainfall file {}'.format(output))
         np.savetxt(output, data, delimiter = '\t', fmt = '%s\t%s\t%s\t%s\t%s\t%s\t%.5s')
         cfg.factor_matrix = np.append(cfg.factor_matrix, factor_array)
@@ -132,7 +132,7 @@ def changeRainfallForwards(k_array):
         factor_array = np.array([])
         for i, r in enumerate(data):
             if startLine + ndata <= i < startLine + ndata + ndata:
-                factory = ((-k + 1)/ndata) * n + k
+                factory = ((k - 1)/ndata) * n + 1
                 factor_array = np.append(factor_array, factory)
                 n = n - 1
                 data[i][rainc] =  float(r[rainc]) * factory
