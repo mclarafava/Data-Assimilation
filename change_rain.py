@@ -92,6 +92,10 @@ def save_best_k(k_array):
 def save_k_matrix():
     debuglog('Saving best k_matrix')
     np.savetxt('matrix_k.txt', cfg.best_matrix, fmt = '%s')
+    src = 'matrix_k.txt'
+    dest = 'matrix.txt'
+    shutil.copy(src, cfg.gdir_name+slash+dest)
+    debuglog ('Copying file {} to {} folder as {}'.format(src, cfg.gdir_name, dest))
 
 # this function change the rainfall backwards from -k until the current time
 def changeRainfall(k_array):
