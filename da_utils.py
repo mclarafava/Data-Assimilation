@@ -1,19 +1,16 @@
 import os
+from os.path import join
 import cfg
 import datetime
 import glob, shutil
 from cfg import *
 from wadi_tools import *
 
-if os.name == 'nt':
-    slash = '\\'
-else:
-    slash = '//'
-swmm_file = '{}{}{}'.format(model_dir, slash, swmm_filename)
-spreadsheet = '{}{}{}'.format(model_dir, slash, spreadsheet_name)
+swmm_file = join(model_dir, swmm_filename)
+spreadsheet = join(model_dir, spreadsheet_name)
 
 def copy_inp_to_folder (folder):
-    copy_file(model_dir+slash+swmm_filename, folder)
+    copy_file(join(model_dir, swmm_filename), folder)
 
 def create_dir(dir_name):
     if not os.path.exists(dir_name):
@@ -33,7 +30,7 @@ def get_dir_names(raindata):
 
 # copying original rainfall files to the model dir
 def copy_input_files():
-    input_files = input_dir+slash+'*.DAT'
+    input_files = join(input_dir,'*.DAT')
     for file in glob.glob(input_files):
         shutil.copy(file, model_dir)
 
